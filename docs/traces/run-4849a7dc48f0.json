@@ -1,0 +1,96 @@
+{
+  "run_id": "4849a7dc48f0",
+  "event_count": 7,
+  "events": [
+    {
+      "node": "inspect_schema",
+      "event_type": "schema_loaded",
+      "run_id": "4849a7dc48f0",
+      "timestamp": 1781795363.728935,
+      "duration_ms": 0.007,
+      "route": null,
+      "payload": {
+        "dialect": "sqlite",
+        "schema_chars": 1201
+      }
+    },
+    {
+      "node": "analyze_question",
+      "event_type": "analyzed",
+      "run_id": "4849a7dc48f0",
+      "timestamp": 1781795363.7293115,
+      "duration_ms": 0.036,
+      "route": "generate_sql",
+      "payload": {
+        "intent": "How many courses does each teacher teach?",
+        "is_ambiguous": false,
+        "entities": []
+      }
+    },
+    {
+      "node": "generate_sql",
+      "event_type": "sql_generated",
+      "run_id": "4849a7dc48f0",
+      "timestamp": 1781795363.7298193,
+      "duration_ms": 0.015,
+      "route": null,
+      "payload": {
+        "sql": "SELECT t.name, COUNT(o.id) AS course_count FROM teachers t LEFT JOIN course_offerings o ON o.teacher_id = t.id GROUP BY t.id, t.name ORDER BY t.name",
+        "rationale": "rule-based mapping"
+      }
+    },
+    {
+      "node": "validate_sql",
+      "event_type": "validated",
+      "run_id": "4849a7dc48f0",
+      "timestamp": 1781795363.7317414,
+      "duration_ms": 1.615,
+      "route": "execute_sql",
+      "payload": {
+        "validated_sql": "SELECT t.name, COUNT(o.id) AS course_count FROM teachers AS t LEFT JOIN course_offerings AS o ON o.teacher_id = t.id GROUP BY t.id, t.name ORDER BY t.name LIMIT 200"
+      }
+    },
+    {
+      "node": "execute_sql",
+      "event_type": "executed",
+      "run_id": "4849a7dc48f0",
+      "timestamp": 1781795363.7343147,
+      "duration_ms": 1.423,
+      "route": null,
+      "payload": {
+        "columns": [
+          "name",
+          "course_count"
+        ],
+        "row_count": 4,
+        "truncated": false,
+        "error": null
+      }
+    },
+    {
+      "node": "evaluate_result",
+      "event_type": "evaluated",
+      "run_id": "4849a7dc48f0",
+      "timestamp": 1781795363.7350693,
+      "duration_ms": 0.004,
+      "route": "success",
+      "payload": {
+        "row_count": 4,
+        "has_error": false
+      }
+    },
+    {
+      "node": "formulate_answer",
+      "event_type": "answered",
+      "run_id": "4849a7dc48f0",
+      "timestamp": 1781795363.7357786,
+      "duration_ms": 0.047,
+      "route": null,
+      "payload": {
+        "answer": "name=Ada Lovelace, course_count=2; name=Alan Turing, course_count=1; name=Carl Gauss, course_count=1; name=Grace Hopper, course_count=1"
+      }
+    }
+  ],
+  "question": "How many courses does each teacher teach?",
+  "final_answer": "name=Ada Lovelace, course_count=2; name=Alan Turing, course_count=1; name=Carl Gauss, course_count=1; name=Grace Hopper, course_count=1"
+}

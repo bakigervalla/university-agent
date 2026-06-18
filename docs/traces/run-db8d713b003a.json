@@ -1,0 +1,95 @@
+{
+  "run_id": "db8d713b003a",
+  "event_count": 7,
+  "events": [
+    {
+      "node": "inspect_schema",
+      "event_type": "schema_loaded",
+      "run_id": "db8d713b003a",
+      "timestamp": 1781795312.21425,
+      "duration_ms": 0.015,
+      "route": null,
+      "payload": {
+        "dialect": "sqlite",
+        "schema_chars": 1201
+      }
+    },
+    {
+      "node": "analyze_question",
+      "event_type": "analyzed",
+      "run_id": "db8d713b003a",
+      "timestamp": 1781795312.2147925,
+      "duration_ms": 0.053,
+      "route": "generate_sql",
+      "payload": {
+        "intent": "show me their names",
+        "is_ambiguous": false,
+        "entities": []
+      }
+    },
+    {
+      "node": "generate_sql",
+      "event_type": "sql_generated",
+      "run_id": "db8d713b003a",
+      "timestamp": 1781795312.2154722,
+      "duration_ms": 0.02,
+      "route": null,
+      "payload": {
+        "sql": "SELECT name FROM students ORDER BY name",
+        "rationale": "rule-based mapping"
+      }
+    },
+    {
+      "node": "validate_sql",
+      "event_type": "validated",
+      "run_id": "db8d713b003a",
+      "timestamp": 1781795312.2168646,
+      "duration_ms": 1.037,
+      "route": "execute_sql",
+      "payload": {
+        "validated_sql": "SELECT name FROM students ORDER BY name LIMIT 200"
+      }
+    },
+    {
+      "node": "execute_sql",
+      "event_type": "executed",
+      "run_id": "db8d713b003a",
+      "timestamp": 1781795312.2187793,
+      "duration_ms": 1.267,
+      "route": null,
+      "payload": {
+        "columns": [
+          "name"
+        ],
+        "row_count": 6,
+        "truncated": false,
+        "error": null
+      }
+    },
+    {
+      "node": "evaluate_result",
+      "event_type": "evaluated",
+      "run_id": "db8d713b003a",
+      "timestamp": 1781795312.2193143,
+      "duration_ms": 0.007,
+      "route": "success",
+      "payload": {
+        "row_count": 6,
+        "has_error": false
+      }
+    },
+    {
+      "node": "formulate_answer",
+      "event_type": "answered",
+      "run_id": "db8d713b003a",
+      "timestamp": 1781795312.2200732,
+      "duration_ms": 0.057,
+      "route": null,
+      "payload": {
+        "answer": "name=Alice Smith; name=Bob Jones; name=Carol White; name=Dan Brown; name=Eve Davis; name=Frank Miller"
+      }
+    }
+  ],
+  "question": "show me their names",
+  "final_answer": "name=Alice Smith; name=Bob Jones; name=Carol White; name=Dan Brown; name=Eve Davis; name=Frank Miller"
+}

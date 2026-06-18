@@ -1,0 +1,95 @@
+{
+  "run_id": "6641d0226a2e",
+  "event_count": 7,
+  "events": [
+    {
+      "node": "inspect_schema",
+      "event_type": "schema_loaded",
+      "run_id": "6641d0226a2e",
+      "timestamp": 1781724041.8252423,
+      "duration_ms": 16.572,
+      "route": null,
+      "payload": {
+        "dialect": "sqlite",
+        "schema_chars": 1201
+      }
+    },
+    {
+      "node": "analyze_question",
+      "event_type": "analyzed",
+      "run_id": "6641d0226a2e",
+      "timestamp": 1781724041.8261974,
+      "duration_ms": 0.05,
+      "route": "generate_sql",
+      "payload": {
+        "intent": "What is the average grade in Data Structures?",
+        "is_ambiguous": false,
+        "entities": []
+      }
+    },
+    {
+      "node": "generate_sql",
+      "event_type": "sql_generated",
+      "run_id": "6641d0226a2e",
+      "timestamp": 1781724041.8270423,
+      "duration_ms": 0.021,
+      "route": null,
+      "payload": {
+        "sql": "SELECT AVG(e.grade_points) AS avg_gpa FROM enrollments e JOIN course_offerings o ON e.offering_id = o.id JOIN courses c ON o.course_id = c.id WHERE c.title = 'Data Structures'",
+        "rationale": "rule-based mapping"
+      }
+    },
+    {
+      "node": "validate_sql",
+      "event_type": "validated",
+      "run_id": "6641d0226a2e",
+      "timestamp": 1781724041.8292449,
+      "duration_ms": 1.764,
+      "route": "execute_sql",
+      "payload": {
+        "validated_sql": "SELECT AVG(e.grade_points) AS avg_gpa FROM enrollments AS e JOIN course_offerings AS o ON e.offering_id = o.id JOIN courses AS c ON o.course_id = c.id WHERE c.title = 'Data Structures' LIMIT 200"
+      }
+    },
+    {
+      "node": "execute_sql",
+      "event_type": "executed",
+      "run_id": "6641d0226a2e",
+      "timestamp": 1781724041.830726,
+      "duration_ms": 0.805,
+      "route": null,
+      "payload": {
+        "columns": [
+          "avg_gpa"
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "error": null
+      }
+    },
+    {
+      "node": "evaluate_result",
+      "event_type": "evaluated",
+      "run_id": "6641d0226a2e",
+      "timestamp": 1781724041.831261,
+      "duration_ms": 0.005,
+      "route": "success",
+      "payload": {
+        "row_count": 1,
+        "has_error": false
+      }
+    },
+    {
+      "node": "formulate_answer",
+      "event_type": "answered",
+      "run_id": "6641d0226a2e",
+      "timestamp": 1781724041.8318675,
+      "duration_ms": 0.025,
+      "route": null,
+      "payload": {
+        "answer": "3.1"
+      }
+    }
+  ],
+  "question": "What is the average grade in Data Structures?",
+  "final_answer": "3.1"
+}

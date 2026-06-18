@@ -1,0 +1,96 @@
+{
+  "run_id": "a224206a92f6",
+  "event_count": 7,
+  "events": [
+    {
+      "node": "inspect_schema",
+      "event_type": "schema_loaded",
+      "run_id": "a224206a92f6",
+      "timestamp": 1781793037.6817553,
+      "duration_ms": 8.837,
+      "route": null,
+      "payload": {
+        "dialect": "sqlite",
+        "schema_chars": 1201
+      }
+    },
+    {
+      "node": "analyze_question",
+      "event_type": "analyzed",
+      "run_id": "a224206a92f6",
+      "timestamp": 1781793037.682093,
+      "duration_ms": 0.024,
+      "route": "generate_sql",
+      "payload": {
+        "intent": "List all courses taught by Ada Lovelace",
+        "is_ambiguous": false,
+        "entities": []
+      }
+    },
+    {
+      "node": "generate_sql",
+      "event_type": "sql_generated",
+      "run_id": "a224206a92f6",
+      "timestamp": 1781793037.6824782,
+      "duration_ms": 0.012,
+      "route": null,
+      "payload": {
+        "sql": "SELECT DISTINCT c.code, c.title FROM courses c JOIN course_offerings o ON o.course_id = c.id JOIN teachers t ON o.teacher_id = t.id WHERE t.name = 'Ada Lovelace'",
+        "rationale": "rule-based mapping"
+      }
+    },
+    {
+      "node": "validate_sql",
+      "event_type": "validated",
+      "run_id": "a224206a92f6",
+      "timestamp": 1781793037.683712,
+      "duration_ms": 1.007,
+      "route": "execute_sql",
+      "payload": {
+        "validated_sql": "SELECT DISTINCT c.code, c.title FROM courses AS c JOIN course_offerings AS o ON o.course_id = c.id JOIN teachers AS t ON o.teacher_id = t.id WHERE t.name = 'Ada Lovelace' LIMIT 200"
+      }
+    },
+    {
+      "node": "execute_sql",
+      "event_type": "executed",
+      "run_id": "a224206a92f6",
+      "timestamp": 1781793037.6846552,
+      "duration_ms": 0.554,
+      "route": null,
+      "payload": {
+        "columns": [
+          "code",
+          "title"
+        ],
+        "row_count": 2,
+        "truncated": false,
+        "error": null
+      }
+    },
+    {
+      "node": "evaluate_result",
+      "event_type": "evaluated",
+      "run_id": "a224206a92f6",
+      "timestamp": 1781793037.6849663,
+      "duration_ms": 0.002,
+      "route": "success",
+      "payload": {
+        "row_count": 2,
+        "has_error": false
+      }
+    },
+    {
+      "node": "formulate_answer",
+      "event_type": "answered",
+      "run_id": "a224206a92f6",
+      "timestamp": 1781793037.6853318,
+      "duration_ms": 0.029,
+      "route": null,
+      "payload": {
+        "answer": "code=CS101, title=Intro to Programming; code=CS301, title=Databases"
+      }
+    }
+  ],
+  "question": "List all courses taught by Ada Lovelace",
+  "final_answer": "code=CS101, title=Intro to Programming; code=CS301, title=Databases"
+}

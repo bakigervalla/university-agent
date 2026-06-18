@@ -1,0 +1,24 @@
+.env
+# Private, local-only interview prep — never publish
+docs/interview-notes.md
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.py[cod]
+*.sqlite
+*.sqlite3
+*.db
+dist/
+build/
+*.egg-info/
+.DS_Store
+.idea/
+.vscode/
+
+# Browser-automation scratch output
+.playwright-mcp/

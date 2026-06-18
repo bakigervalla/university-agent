@@ -1,0 +1,95 @@
+{
+  "run_id": "5a1e520898c3",
+  "event_count": 7,
+  "events": [
+    {
+      "node": "inspect_schema",
+      "event_type": "schema_loaded",
+      "run_id": "5a1e520898c3",
+      "timestamp": 1781795360.370046,
+      "duration_ms": 0.011,
+      "route": null,
+      "payload": {
+        "dialect": "sqlite",
+        "schema_chars": 1201
+      }
+    },
+    {
+      "node": "analyze_question",
+      "event_type": "analyzed",
+      "run_id": "5a1e520898c3",
+      "timestamp": 1781795360.3706238,
+      "duration_ms": 0.036,
+      "route": "generate_sql",
+      "payload": {
+        "intent": "Who is enrolled in Databases?",
+        "is_ambiguous": false,
+        "entities": []
+      }
+    },
+    {
+      "node": "generate_sql",
+      "event_type": "sql_generated",
+      "run_id": "5a1e520898c3",
+      "timestamp": 1781795360.3713658,
+      "duration_ms": 0.022,
+      "route": null,
+      "payload": {
+        "sql": "SELECT s.name FROM students s JOIN enrollments e ON e.student_id = s.id JOIN course_offerings o ON e.offering_id = o.id JOIN courses c ON o.course_id = c.id WHERE c.title = 'Databases'",
+        "rationale": "rule-based mapping"
+      }
+    },
+    {
+      "node": "validate_sql",
+      "event_type": "validated",
+      "run_id": "5a1e520898c3",
+      "timestamp": 1781795360.37388,
+      "duration_ms": 2.115,
+      "route": "execute_sql",
+      "payload": {
+        "validated_sql": "SELECT s.name FROM students AS s JOIN enrollments AS e ON e.student_id = s.id JOIN course_offerings AS o ON e.offering_id = o.id JOIN courses AS c ON o.course_id = c.id WHERE c.title = 'Databases' LIMIT 200"
+      }
+    },
+    {
+      "node": "execute_sql",
+      "event_type": "executed",
+      "run_id": "5a1e520898c3",
+      "timestamp": 1781795360.375817,
+      "duration_ms": 1.139,
+      "route": null,
+      "payload": {
+        "columns": [
+          "name"
+        ],
+        "row_count": 0,
+        "truncated": false,
+        "error": null
+      }
+    },
+    {
+      "node": "evaluate_result",
+      "event_type": "evaluated",
+      "run_id": "5a1e520898c3",
+      "timestamp": 1781795360.3763602,
+      "duration_ms": 0.003,
+      "route": "empty_result",
+      "payload": {
+        "row_count": 0,
+        "has_error": false
+      }
+    },
+    {
+      "node": "formulate_empty_answer",
+      "event_type": "empty",
+      "run_id": "5a1e520898c3",
+      "timestamp": 1781795360.3768904,
+      "duration_ms": 0.002,
+      "route": null,
+      "payload": {
+        "answer": "No records match your question."
+      }
+    }
+  ],
+  "question": "Who is enrolled in Databases?",
+  "final_answer": "No records match your question."
+}

@@ -1,0 +1,95 @@
+{
+  "run_id": "776317cbd703",
+  "event_count": 7,
+  "events": [
+    {
+      "node": "inspect_schema",
+      "event_type": "schema_loaded",
+      "run_id": "776317cbd703",
+      "timestamp": 1781724041.9191997,
+      "duration_ms": 23.229,
+      "route": null,
+      "payload": {
+        "dialect": "sqlite",
+        "schema_chars": 1201
+      }
+    },
+    {
+      "node": "analyze_question",
+      "event_type": "analyzed",
+      "run_id": "776317cbd703",
+      "timestamp": 1781724041.920092,
+      "duration_ms": 0.044,
+      "route": "generate_sql",
+      "payload": {
+        "intent": "Which teachers taught in Fall 2023?",
+        "is_ambiguous": false,
+        "entities": []
+      }
+    },
+    {
+      "node": "generate_sql",
+      "event_type": "sql_generated",
+      "run_id": "776317cbd703",
+      "timestamp": 1781724041.9210336,
+      "duration_ms": 0.023,
+      "route": null,
+      "payload": {
+        "sql": "SELECT DISTINCT t.name FROM teachers t JOIN course_offerings o ON o.teacher_id = t.id JOIN semesters s ON o.semester_id = s.id WHERE s.name = 'Fall 2023'",
+        "rationale": "rule-based mapping"
+      }
+    },
+    {
+      "node": "validate_sql",
+      "event_type": "validated",
+      "run_id": "776317cbd703",
+      "timestamp": 1781724041.924131,
+      "duration_ms": 2.53,
+      "route": "execute_sql",
+      "payload": {
+        "validated_sql": "SELECT DISTINCT t.name FROM teachers AS t JOIN course_offerings AS o ON o.teacher_id = t.id JOIN semesters AS s ON o.semester_id = s.id WHERE s.name = 'Fall 2023' LIMIT 200"
+      }
+    },
+    {
+      "node": "execute_sql",
+      "event_type": "executed",
+      "run_id": "776317cbd703",
+      "timestamp": 1781724041.9263244,
+      "duration_ms": 1.221,
+      "route": null,
+      "payload": {
+        "columns": [
+          "name"
+        ],
+        "row_count": 2,
+        "truncated": false,
+        "error": null
+      }
+    },
+    {
+      "node": "evaluate_result",
+      "event_type": "evaluated",
+      "run_id": "776317cbd703",
+      "timestamp": 1781724041.9270632,
+      "duration_ms": 0.004,
+      "route": "success",
+      "payload": {
+        "row_count": 2,
+        "has_error": false
+      }
+    },
+    {
+      "node": "formulate_answer",
+      "event_type": "answered",
+      "run_id": "776317cbd703",
+      "timestamp": 1781724041.9279587,
+      "duration_ms": 0.074,
+      "route": null,
+      "payload": {
+        "answer": "name=Ada Lovelace; name=Carl Gauss"
+      }
+    }
+  ],
+  "question": "Which teachers taught in Fall 2023?",
+  "final_answer": "name=Ada Lovelace; name=Carl Gauss"
+}

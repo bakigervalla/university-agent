@@ -1,0 +1,95 @@
+{
+  "run_id": "55e145704bb6",
+  "event_count": 7,
+  "events": [
+    {
+      "node": "inspect_schema",
+      "event_type": "schema_loaded",
+      "run_id": "55e145704bb6",
+      "timestamp": 1781796618.5687406,
+      "duration_ms": 0.007,
+      "route": null,
+      "payload": {
+        "dialect": "sqlite",
+        "schema_chars": 1201
+      }
+    },
+    {
+      "node": "analyze_question",
+      "event_type": "analyzed",
+      "run_id": "55e145704bb6",
+      "timestamp": 1781796618.5692246,
+      "duration_ms": 0.049,
+      "route": "generate_sql",
+      "payload": {
+        "intent": "How many students are enrolled in CS101?",
+        "is_ambiguous": false,
+        "entities": []
+      }
+    },
+    {
+      "node": "generate_sql",
+      "event_type": "sql_generated",
+      "run_id": "55e145704bb6",
+      "timestamp": 1781796618.569891,
+      "duration_ms": 0.025,
+      "route": null,
+      "payload": {
+        "sql": "SELECT COUNT(DISTINCT e.student_id) AS student_count FROM enrollments e JOIN course_offerings o ON e.offering_id = o.id JOIN courses c ON o.course_id = c.id WHERE c.code = 'CS101'",
+        "rationale": "rule-based mapping"
+      }
+    },
+    {
+      "node": "validate_sql",
+      "event_type": "validated",
+      "run_id": "55e145704bb6",
+      "timestamp": 1781796618.5725896,
+      "duration_ms": 2.278,
+      "route": "execute_sql",
+      "payload": {
+        "validated_sql": "SELECT COUNT(DISTINCT e.student_id) AS student_count FROM enrollments AS e JOIN course_offerings AS o ON e.offering_id = o.id JOIN courses AS c ON o.course_id = c.id WHERE c.code = 'CS101' LIMIT 200"
+      }
+    },
+    {
+      "node": "execute_sql",
+      "event_type": "executed",
+      "run_id": "55e145704bb6",
+      "timestamp": 1781796618.5748205,
+      "duration_ms": 1.17,
+      "route": null,
+      "payload": {
+        "columns": [
+          "student_count"
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "error": null
+      }
+    },
+    {
+      "node": "evaluate_result",
+      "event_type": "evaluated",
+      "run_id": "55e145704bb6",
+      "timestamp": 1781796618.5755475,
+      "duration_ms": 0.004,
+      "route": "success",
+      "payload": {
+        "row_count": 1,
+        "has_error": false
+      }
+    },
+    {
+      "node": "formulate_answer",
+      "event_type": "answered",
+      "run_id": "55e145704bb6",
+      "timestamp": 1781796618.576273,
+      "duration_ms": 0.039,
+      "route": null,
+      "payload": {
+        "answer": "6"
+      }
+    }
+  ],
+  "question": "How many students are enrolled in CS101?",
+  "final_answer": "6"
+}

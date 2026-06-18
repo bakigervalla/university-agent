@@ -1,0 +1,44 @@
+{
+  "run_id": "d7927d7914e2",
+  "event_count": 3,
+  "events": [
+    {
+      "node": "inspect_schema",
+      "event_type": "schema_loaded",
+      "run_id": "d7927d7914e2",
+      "timestamp": 1781795348.0139596,
+      "duration_ms": 0.007,
+      "route": null,
+      "payload": {
+        "dialect": "sqlite",
+        "schema_chars": 1201
+      }
+    },
+    {
+      "node": "analyze_question",
+      "event_type": "analyzed",
+      "run_id": "d7927d7914e2",
+      "timestamp": 1781795348.014462,
+      "duration_ms": 0.046,
+      "route": "clarification_required",
+      "payload": {
+        "intent": "Who are the best students?",
+        "is_ambiguous": true,
+        "entities": []
+      }
+    },
+    {
+      "node": "formulate_clarification",
+      "event_type": "clarification",
+      "run_id": "d7927d7914e2",
+      "timestamp": 1781795348.015094,
+      "duration_ms": 0.005,
+      "route": null,
+      "payload": {
+        "clarification": "How should I rank them -- by GPA, by number of courses, or another metric?"
+      }
+    }
+  ],
+  "question": "Who are the best students?",
+  "final_answer": "How should I rank them -- by GPA, by number of courses, or another metric?"
+}

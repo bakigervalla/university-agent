@@ -1,0 +1,95 @@
+{
+  "run_id": "02c3d53f067a",
+  "event_count": 7,
+  "events": [
+    {
+      "node": "inspect_schema",
+      "event_type": "schema_loaded",
+      "run_id": "02c3d53f067a",
+      "timestamp": 1781793037.7279055,
+      "duration_ms": 8.929,
+      "route": null,
+      "payload": {
+        "dialect": "sqlite",
+        "schema_chars": 1201
+      }
+    },
+    {
+      "node": "analyze_question",
+      "event_type": "analyzed",
+      "run_id": "02c3d53f067a",
+      "timestamp": 1781793037.7282686,
+      "duration_ms": 0.025,
+      "route": "generate_sql",
+      "payload": {
+        "intent": "What grade did Alice Smith get in Intro to Programming?",
+        "is_ambiguous": false,
+        "entities": []
+      }
+    },
+    {
+      "node": "generate_sql",
+      "event_type": "sql_generated",
+      "run_id": "02c3d53f067a",
+      "timestamp": 1781793037.7286768,
+      "duration_ms": 0.013,
+      "route": null,
+      "payload": {
+        "sql": "SELECT e.grade FROM enrollments e JOIN students s ON e.student_id = s.id JOIN course_offerings o ON e.offering_id = o.id JOIN courses c ON o.course_id = c.id WHERE s.name = 'Alice Smith' AND c.title = 'Intro to Programming'",
+        "rationale": "rule-based mapping"
+      }
+    },
+    {
+      "node": "validate_sql",
+      "event_type": "validated",
+      "run_id": "02c3d53f067a",
+      "timestamp": 1781793037.7300951,
+      "duration_ms": 1.187,
+      "route": "execute_sql",
+      "payload": {
+        "validated_sql": "SELECT e.grade FROM enrollments AS e JOIN students AS s ON e.student_id = s.id JOIN course_offerings AS o ON e.offering_id = o.id JOIN courses AS c ON o.course_id = c.id WHERE s.name = 'Alice Smith' AND c.title = 'Intro to Programming' LIMIT 200"
+      }
+    },
+    {
+      "node": "execute_sql",
+      "event_type": "executed",
+      "run_id": "02c3d53f067a",
+      "timestamp": 1781793037.7308424,
+      "duration_ms": 0.365,
+      "route": null,
+      "payload": {
+        "columns": [
+          "grade"
+        ],
+        "row_count": 1,
+        "truncated": false,
+        "error": null
+      }
+    },
+    {
+      "node": "evaluate_result",
+      "event_type": "evaluated",
+      "run_id": "02c3d53f067a",
+      "timestamp": 1781793037.7310987,
+      "duration_ms": 0.002,
+      "route": "success",
+      "payload": {
+        "row_count": 1,
+        "has_error": false
+      }
+    },
+    {
+      "node": "formulate_answer",
+      "event_type": "answered",
+      "run_id": "02c3d53f067a",
+      "timestamp": 1781793037.7314172,
+      "duration_ms": 0.012,
+      "route": null,
+      "payload": {
+        "answer": "A"
+      }
+    }
+  ],
+  "question": "What grade did Alice Smith get in Intro to Programming?",
+  "final_answer": "A"
+}
